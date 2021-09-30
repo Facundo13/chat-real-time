@@ -1,10 +1,29 @@
 import React from 'react'
+import {ChatContext} from './context/ChatProvider' 
+import Navbar from './components/Navbar'
+import Chat from './components/Chat'
 
 const App = () => {
-    return (
+
+    const {usuario} = React.useContext(ChatContext)
+
+    return usuario !== null ? (
         <div>
-            Chat   
+            <Navbar />
+            {
+                usuario.estado ? (
+                    <Chat />
+                ) : (
+                    <div 
+                        className='lead text-center mt-5'
+                    >
+                        Debes iniciar sesión
+                    </div>
+                )
+            }
         </div>
+    ) : (
+        <div>Cargando...</div>
     )
 }
 
